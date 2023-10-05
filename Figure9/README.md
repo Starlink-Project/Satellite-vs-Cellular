@@ -39,8 +39,6 @@ After cloning the repository, navigate to the `Figure9` folder and simply run th
 
 `python Fig9.py`
 
-If everything succeeds, figures of network performance coverage should be created with the formats '.jpg' and '.pdf'.
+If everything succeeds, figures of network performance coverage should be created with the format '.pdf'.
 
-The scripts also provide the computation of the performance coverage on various networks. To achieve this, just call function coveragePrec(foldername,direction), and run the following codes in the terminal. The coverage percentages should be printed.  
-
-`python Fig9.py`
+The scripts also provide the computation of the performance coverage on various networks. This function is called in the barcoveragePrec(), and run the above codes in the terminal, the function will be executed. The coverage percentages should be printed.
