@@ -38,6 +38,6 @@ Here are the software/package requirements. The version number in the bracket in
 
 After cloning the repository, navigate to the `Figure10` folder and simply run the following command.
 
-`gnuplot mptcp_stats.txt`
+`gnuplot mptcp_stats.gp`
 
 If everything succeeds, figures of network performance coverage should be created with the format '.pdf'.
