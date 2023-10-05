@@ -28,14 +28,13 @@ def box_throughput_area(foldername, direction):
     area_ranges = ['urban', 'suburban', 'rural']
     throughputs_data = load_data_for_area(folder_path, area_ranges)
 
-    fig, ax = plt.subplots()
-    fig.set_size_inches(5.5, 4)
-    fzsize = 18
+    plt.rcParams.update({'font.size': 18})
+    fig, ax = plt.subplots(figsize=(6.5, 4.8))
 
     cmap20 = plt.cm.tab20
     colors = [cmap20(i) for i in [1, 5]]
     hatch_colors = [cmap20(i) for i in [0, 4]]
-    hatches = ['//', 'oo']
+    hatches = ['///', 'xxx']
 
     x_positions = [0.9, 1.1, 1.5, 1.7, 2.1, 2.3]
     alllabels = ['Cellular', 'MOB', 'Cellular', 'MOB', 'Cellular', 'MOB']
@@ -45,17 +44,22 @@ def box_throughput_area(foldername, direction):
 
     boxes = []
     for idx, ele in enumerate(transposed_list):
-        box = ax.boxplot(ele, positions=[x_positions[idx]], widths=0.2, patch_artist=True, boxprops=dict(facecolor=colors[idx % 2], hatch=hatches[idx % 2], edgecolor=hatch_colors[idx % 2]), showfliers=False, labels=[alllabels[idx]])
+        box = ax.boxplot(ele, positions=[x_positions[idx]], widths=0.2, patch_artist=True, 
+                         medianprops=dict(color=cmap20(2), linewidth=2),
+                         boxprops=dict(facecolor=colors[idx % 2], hatch=hatches[idx % 2], edgecolor=hatch_colors[idx % 2]), 
+                         showfliers=False, labels=[alllabels[idx]])
         boxes.append(box)
 
     xtick_labels = ['Urban', 'Suburban', 'Rural']
     x_ticks = [1, 1.6, 2.2]
     ax.set_xticks(x_ticks)
-    ax.set_xticklabels(xtick_labels, fontsize=fzsize)
+    ax.set_xticklabels(xtick_labels)
+    ax.set_xlabel('Area Type')
+    ax.set_ylabel('Throughput (Mbps)')
     
     legend_boxes = [boxes[0]['boxes'][0], boxes[1]['boxes'][0]]
     legend_labels = ['Cellular', 'MOB']
-    legend = ax.legend(legend_boxes, legend_labels, loc='upper left', bbox_to_anchor=(0.17, 1.03), prop={'size': fzsize}, ncol=2)
+    ax.legend(legend_boxes, legend_labels, loc='upper left', bbox_to_anchor=(0.22, 1.02), ncol=2)
 
     plt.xlim(0.7, 2.5)
     plt.grid(True)
