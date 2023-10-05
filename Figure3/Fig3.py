@@ -3,126 +3,86 @@ import os
 import pandas as pd
 import numpy as np
 
+config = {
+    'a': {
+        'legends': ['MOB-TCP', 'Cellular-TCP', 'MOB-UDP', 'Cellular-UDP'],
+        'filename': 'tcp_vs_udp_dl.pdf'
+    },
+    'b': {
+        'legends': ['RM', 'MOB'],
+        'filename': 'rm_vs_mob_udp_dl.pdf'
+    },
+    'c': {
+        'legends': ['Uplink', 'Downlink'],
+        'filename': 'mob_udp_ul_vs_dl.pdf'
+    }
+}
 
-def throughputcdf(type):
-    rv_throughputs_tcp = []
-    rv_in_motion_throughputs_tcp = []
-    rv_throughputs_udp = []
-    rv_in_motion_throughputs_udp = []
-    cellular_throughputs_udp = []
-    cellular_throughputs_udp = []
-    rv_in_motion_throughputs_udp_uplink = []
-    if type == 'TCPVSUDP' or type =='RVVSRVIM':
-        direction = 'Downlink'
-    elif type == 'UPVSDOWN':
-        direction = 'Downlink'
-        direction2 = 'Uplink'
-        folder_path3 = os.path.join(os.getcwd(),'UDP',direction2)
-        csv_file3 = [f for f in os.listdir(folder_path3) if f.endswith('_all_area.csv') and 'delurban' not in f and 'RV-In-motion' in f]
-        file_path = os.path.join(folder_path3, csv_file3[0])
-        df = pd.read_csv(file_path)
-        rv_in_motion_throughputs_udp_uplink = np.array(df['throughput'])
-    folder_path1 = os.path.join(os.getcwd(),'TCP',direction)
-    folder_path2 = os.path.join(os.getcwd(),'UDP',direction)
-    legends = ['RM-TCP','MOB-TCP','Celluar-TCP','RM-UDP','MOB-UDP','Cellular-UDP']
-    if type == 'TCPVSUDP':
-        legends = ['MOB-TCP','Celluar-TCP','MOB-UDP','Cellular-UDP']
-    elif type == 'RVVSRVIM':
-        legends = ['RM','MOB']
-    elif type == 'UPVSDOWN':
-        legends = ['Uplink','Downlink']
-    
-    if direction == 'Uplink':
-        csv_files2 = [f for f in os.listdir(folder_path2) if (f.endswith('_all.csv') and 'delurban' not in f and 'RV' not in f) or (f.endswith('_all_area.csv') and 'delurban' not in f and 'RV' in f and 'modified' in f)]
-        csv_files1=  [f for f in os.listdir(folder_path1) if f.endswith('_all_area.csv') and 'delurban' not in f ]
-    else:
-        csv_files2 = [f for f in os.listdir(folder_path2) if f.endswith('_all.csv') and  'delurban' not in f]
-        csv_files1 = [f for f in os.listdir(folder_path1) if f.endswith('_all_area.csv') and 'delurban' not in f ]
+def throughputcdf(plot_type):
+    folder_path_base = os.getcwd()
+    all_throughputs = []
 
-    for csv_file in csv_files1:
-        file_path = os.path.join(folder_path1, csv_file)
-        df = pd.read_csv(file_path)
-        if "RV" in csv_file and "In-motion" not in csv_file:
-            rv_throughputs_tcp = np.array(df['throughput'])
-        elif 'RV-In-motion' in csv_file:
-            rv_in_motion_throughputs_tcp = np.array(df['throughput'])
-        elif 'AT_T' in csv_file or 'T-mobile' in csv_file or 'Verizon' in csv_file:
-            cellular_throughputs_tcp = np.array(df['throughput'])
-    
-    for csv_file in csv_files2:
-        file_path = os.path.join(folder_path2, csv_file)
-        df = pd.read_csv(file_path)
-        if "RV" in csv_file and "In-motion" not in csv_file:
-            rv_throughputs_udp = np.array(df['throughput'])
-        elif 'RV-In-motion' in csv_file:
-            rv_in_motion_throughputs_udp = np.array(df['throughput'])
-        elif 'AT_T' in csv_file or 'T-mobile' in csv_file or 'Verizon' in csv_file:
-            cellular_throughputs_udp = np.array(df['throughput'])
+    cmap20 = plt.cm.tab20
 
-    fig, ax = plt.subplots()
-    all_throughputs = [rv_throughputs_tcp,rv_in_motion_throughputs_tcp,cellular_throughputs_tcp,rv_throughputs_udp,rv_in_motion_throughputs_udp,cellular_throughputs_udp]
-    colors = ['C0','C1','C2','C0','C1','C2']
-    linestles = ['--','--','--','-','-','-']
-    if type == 'TCPVSUDP':
-        all_throughputs = [rv_in_motion_throughputs_tcp,cellular_throughputs_tcp,rv_in_motion_throughputs_udp,cellular_throughputs_udp]
-        colors = ['C0','C1','C0','C1']
-        linestles = ['--','--','-','-']
-    elif type == 'RVVSRVIM':
-        all_throughputs = [rv_throughputs_udp,rv_in_motion_throughputs_udp]
-        colors = ['C2','C0']
-        linestles = ['-','-']
-    elif type == 'UPVSDOWN':
-        all_throughputs = [rv_in_motion_throughputs_udp_uplink,rv_in_motion_throughputs_udp]
-        colors = ['C4','C1']
-        linestles = ['-','-']
-    for Idx,data in enumerate(all_throughputs):
-        sorted_data = np.sort(data)
-        cdf = np.arange(1, len(sorted_data) + 1) / len(sorted_data)
-
-
-        count, bins_count = np.histogram(data, bins = np.unique(data).shape[0])
-        pdf = count / sum(count)
-        cdf = np.cumsum(pdf)
+    if plot_type == 'a':
+        mob_tcp = pd.read_csv(os.path.join(folder_path_base, 'TCP', 'Downlink', 'mob_all_area.csv'))['throughput']
+        cellular_tcp_files = [
+            pd.read_csv(os.path.join(folder_path_base, 'TCP', 'Downlink', f))['throughput'] 
+            for f in ['att_all_area.csv', 'tm_all_area.csv', 'vz_all_area.csv']
+        ]
+        cellular_tcp = pd.concat(cellular_tcp_files, ignore_index=True)
         
-        plt.plot(bins_count[1:],cdf,label = legends[Idx],color=colors[Idx],linestyle =linestles[Idx] ,linewidth=3)
-    fzsize = 22
-    if type == 'TCPVSUDP':
-        plt.xlim(0,600)
+        mob_udp = pd.read_csv(os.path.join(folder_path_base, 'UDP', 'Downlink', 'mob_all.csv'))['throughput']
+        cellular_udp_files = [
+            pd.read_csv(os.path.join(folder_path_base, 'UDP', 'Downlink', f))['throughput']
+            for f in ['att_all.csv', 'tm_all.csv', 'vz_all.csv']
+        ]
+        cellular_udp = pd.concat(cellular_udp_files, ignore_index=True)
+        
+        all_throughputs.extend([mob_tcp, cellular_tcp, mob_udp, cellular_udp])
+        colors = [cmap20(0), cmap20(4), cmap20(0), cmap20(4)]
+        linestyles = ['--', '--', '-', '-']
+    
+    elif plot_type == 'b':
+        rm_udp = pd.read_csv(os.path.join(folder_path_base, 'UDP', 'Downlink', 'rm_all.csv'))['throughput']
+        mob_udp = pd.read_csv(os.path.join(folder_path_base, 'UDP', 'Downlink', 'mob_all.csv'))['throughput']
+        
+        all_throughputs.extend([rm_udp, mob_udp])
+        colors = [cmap20(18), cmap20(0)]
+        linestyles = ['dashdot', '-']
+    
+    elif plot_type == 'c':
+        mob_udp_down = pd.read_csv(os.path.join(folder_path_base, 'UDP', 'Downlink', 'mob_all.csv'))['throughput']
+        mob_udp_up = pd.read_csv(os.path.join(folder_path_base, 'UDP', 'Uplink', 'mob_all_area.csv'))['throughput']
+    
+        all_throughputs.extend([mob_udp_up, mob_udp_down])
+        colors = [cmap20(2), cmap20(8)]
+        linestyles = ['-', '-']
 
+
+    fig, ax = plt.subplots(figsize=(6.4, 4.8))
+    plt.xlim(0, 600)
+    plt.ylim(0, 1.02)
+
+    for idx, data in enumerate(all_throughputs):
+        sorted_data = np.sort(data)
+        count, bins_count = np.histogram(sorted_data, bins=np.unique(sorted_data).shape[0])
+        cdf = np.cumsum(count) / len(sorted_data)
+        plt.plot(bins_count[1:], cdf, label=config[plot_type]['legends'][idx], color=colors[idx], linestyle=linestyles[idx], linewidth=4)
+
+    fzsize = 22
     ax.tick_params(axis='y', labelsize=fzsize)
     ax.tick_params(axis='x', labelsize=fzsize)
-    ax.set_xlabel('Throughput (Mbps)',fontsize=fzsize)
-    ax.set_ylabel('CDF',fontsize=fzsize)
+    ax.set_xlabel('Throughput (Mbps)', fontsize=fzsize)
+    ax.set_ylabel('CDF', fontsize=fzsize)
     legend = ax.legend(prop={'size': 20})
-    x_ticks = [0, 100, 200, 300, 400, 500, 600]
-    x_tick_labels = ['0', '100', '200', '300', '400', '500', '600']
-    ax.set_xticks(x_ticks)
-    ax.set_xticklabels(x_tick_labels)
-
+    ax.set_xticks([0, 100, 200, 300, 400, 500, 600])
+    ax.set_xticklabels(['0', '100', '200', '300', '400', '500', '600'])
     plt.grid(True)
     plt.tight_layout()
-    #plt.show()
-    folder_path = os.path.join(os.getcwd())
-    figname = os.path.join(folder_path,direction+'ThroughputAllCDF4.jpg')
-    if type == 'TCPVSUDP':
-        figname = os.path.join(folder_path,direction+'TCPVSUDP.jpg')
-    elif type == 'RVVSRVIM':
-        figname = os.path.join(folder_path,direction+'RVVSRVIM.jpg')
-    elif type == 'UPVSDOWN':
-        figname = os.path.join(folder_path,direction+'UPVSDOWN.jpg')
-    plt.savefig(figname)
-    figname = os.path.join(folder_path,direction+'ThroughputAllCDF4.pdf')
-    if type == 'TCPVSUDP':
-        figname = os.path.join(folder_path,direction+'TCPVSUDP.pdf')
-    elif type == 'RVVSRVIM':
-        figname = os.path.join(folder_path,direction+'RVVSRVIM.pdf')
-    elif type == 'UPVSDOWN':
-        figname = os.path.join(folder_path,direction+'UPVSDOWN.pdf')
-    plt.savefig(figname)
-    plt.close()
+    plt.savefig(os.path.join(folder_path_base, config[plot_type]['filename']))
 
 if __name__ == '__main__':
-    throughputcdf('TCPVSUDP')
-    throughputcdf('RVVSRVIM')
-    throughputcdf('UPVSDOWN')
-    
+    throughputcdf('a')
+    throughputcdf('b')
+    throughputcdf('c')
