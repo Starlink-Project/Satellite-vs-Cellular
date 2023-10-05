@@ -42,4 +42,4 @@ After cloning the repository, navigate to the `Figure1` folder and simply run th
 
 `python Fig1.py`
 
-If everything succeeds, figures should be created with the formats '.jpg' and '.pdf'.
+If everything succeeds, figures should be created with the format '.pdf'.
