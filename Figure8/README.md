@@ -40,4 +40,4 @@ After cloning the repository, navigate to the `Figure8` folder and simply run th
 
 `python Fig8.py`
 
-If everything succeeds, figures of throughput over three types of areas should be created with the formats '.jpg' and '.pdf'.
+If everything succeeds, figures of throughput over three types of areas should be created with the format '.pdf'.
