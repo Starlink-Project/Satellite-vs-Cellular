@@ -1,6 +1,6 @@
 # Throughput Performance Comparison and Analysis
 
-This folder contains the dataset and plotting scripts for the throughput comparison within Starlink networks (Figure 3 in the paper) conducted using 5GTracker.
+This folder contains the dataset and plotting scripts for the throughput comparison within Starlink networks (Figure 3 in the paper) conducted using 5GTracker. The comparison includes (1) TCP vs. UDP, (2) Roam vs. Mobility, and (3) Uplink vs. Downlink.
 
 ## Folder Structure
 
