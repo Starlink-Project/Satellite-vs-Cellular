@@ -1,9 +1,8 @@
 # TCP Packet Loss Comparison and Analysis
 
-This folder contains plotting scripts for the TCP Packet Loss between Starlink networks and Cellular networks (Figure 5 in the paper) conducted using TCPDump.
-The data used in this figure are from the tcpdump we collected during the experiment. We get these data by manually analyzing tcpdump on Wireshark. 
+This folder contains plotting scripts for the TCP Packet Loss between Starlink and Cellular networks (Figure 5 in the paper) conducted using TCPDump. The data used in this figure are from the tcpdump we collected during the experiment. We have extracted the data by manually analyzing tcpdump on Wireshark. 
 
-## Folder Structure   
+## Folder Structure
 
 | Filename | Description |
 |---|---|

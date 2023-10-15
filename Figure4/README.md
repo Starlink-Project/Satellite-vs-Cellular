@@ -1,8 +1,8 @@
 # UDP-Ping Comparison and Analysis
 
-This folder contains the dataset and plotting scripts for the Latency comparison between Starlink networks and Cellular networks (Figure 4 in the paper) conducted using UDP-Ping.
+This folder contains the dataset and plotting scripts for the Latency comparison between Starlink and Cellular networks (Figure 4 in the paper) conducted using UDP-Ping.
 
-## Folder Structure   
+## Folder Structure
 
 | Filename | Description |
 |---|---|

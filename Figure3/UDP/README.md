@@ -1,6 +1,6 @@
 # UDP Throughput Measurement
 
-This folder contains the dataset for UDP Downlink and uplink throughput measurement via Starlink and cellular networks conducted using **5GTracker**.
+This folder contains the dataset for UDP downlink and uplink throughput measurement via Starlink and cellular networks conducted using **5GTracker**.
 
 ## Folder Structure   
 

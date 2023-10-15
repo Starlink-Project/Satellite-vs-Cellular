@@ -1,12 +1,13 @@
-# Throughput over different area types.
+# SPTCP vs. MPTCP experimental result statistics
 
 This folder contains the dataset and plotting scripts for the performance comparison between Single-path TCP and MPTCP on file download. (Figure 10 in the paper).
+
 ## Folder Structure   
 
 | Filename | Description |
 |---|---|
-|`mptcp_stats.txt`|The file contains the throughput statistics of single-path TCP and MPTCP file download.|
-| `mptcp_stats.gp` | Gnuplot script to generate plots.|
+| `mptcp_stats.txt` | The file contains the throughput statistics of single-path TCP and MPTCP file download. |
+| `mptcp_stats.gp` | Gnuplot script to generate plots. |
 
 ## Dataset Description
 
@@ -35,9 +36,8 @@ Here are the software/package requirements. The version number in the bracket in
 
 ### Running code
 
-
 After cloning the repository, navigate to the `Figure10` folder and simply run the following command.
 
 `gnuplot mptcp_stats.gp`
 
-If everything succeeds, figures of network performance coverage should be created with the format '.pdf'.
+If everything succeeds, the figure of network performance coverage should be created with the format '.pdf'.

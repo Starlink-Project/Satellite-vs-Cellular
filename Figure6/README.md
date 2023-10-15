@@ -1,8 +1,8 @@
-# Throughput over Speed
+# Throughput over Different Speeds
 
-This folder contains the dataset and plotting scripts for the Throughput over speed for Starlink networks and cellular networks (Figure 6 in the paper) conducted using 5GTracker.
+This folder contains the dataset and plotting scripts for the throughput over at different moving speeds for Starlink and cellular networks (Figure 6 in the paper) conducted using 5GTracker.
 
-## Folder Structure 
+## Folder Structure
 
 | Filename | Description |
 |---|---|
@@ -38,9 +38,8 @@ Here are the software/package requirements. The version number in the bracket in
 
 ### Running code
 
-
 After cloning the repository, navigate to the `Figure6` folder and simply run the following command.
 
 `python Fig6.py`
 
-If everything succeeds, figures of throughput over speed should be created with the formats '.pdf'.
+If everything succeeds, the figure of throughput over speed should be created with the formats '.pdf'.

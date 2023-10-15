@@ -1,8 +1,8 @@
-# TCP Throughput Parallelism 
+# Impact of TCP Parallelism 
 
-This folder contains the dataset and plotting scripts for the improvement of TCP throughput by parallelism for Starlink networks and cellular networks (Figure 7 in the paper) conducted using 5GTracker.
+This folder contains the dataset and plotting scripts for the improvement of TCP throughput by parallelism for Starlink and cellular networks (Figure 7 in the paper) conducted using 5GTracker.
 
-## Folder Structure 
+## Folder Structure
 
 | Filename | Description |
 |---|---|
@@ -38,4 +38,4 @@ After cloning the repository, navigate to the `Figure7` folder and simply run th
 
 `python Fig7.py`
 
-If everything succeeds, figures of TCP throughput improvement by parallelism should be created with the format '.pdf'.
+If everything succeeds, the figure of TCP throughput improvement by parallelism should be created with the format '.pdf'.

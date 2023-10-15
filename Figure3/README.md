@@ -1,14 +1,14 @@
 # Throughput Performance Comparison and Analysis
 
-This folder contains the dataset and plotting scripts for the Throughput comparison within Starlink networks (Figure 3 in the paper) conducted using 5GTracker.
+This folder contains the dataset and plotting scripts for the throughput comparison within Starlink networks (Figure 3 in the paper) conducted using 5GTracker.
 
-## Folder Structure   
+## Folder Structure
 
 | Filename | Description |
 |---|---|
 | `TCP` | The folder that contains the dataset of TCP. |
-|`UDP`|The folder that contains the dataset of UDP.|
-| `Fig3.py` | Python script to generate plots.|
+| `UDP` | The folder that contains the dataset of UDP. |
+| `Fig3.py` | Python script to generate plots. |
 
 ## Generating plots
 
@@ -30,4 +30,4 @@ After cloning the repository, navigate to the `Figure3` folder and simply run th
 
 `python Fig3.py`
 
-If everything succeeds, figures of TCP vs. UDP, Roam vs. Mobility, Uplink vs. Downlink should be created with the format '.pdf'.
+If everything succeeds, the figures of TCP vs. UDP, Roam vs. Mobility, Uplink vs. Downlink should be created with the format '.pdf'.

@@ -1,8 +1,8 @@
-# Throughput over different area types.
+# Throughput Progression over time in MPTCP Experiments
 
 This folder contains the dataset and plotting scripts for throughput progression over time for single-path TCP and MPTCP iPerf download (Figure 11 in the paper). It consists of two subfigures, AT&T and Mobility, Verizon and Mobility.
 
-## Folder Structure   
+## Folder Structure
 
 The dataset contain several data files. We provide descriptions for each file below.
 
@@ -14,7 +14,7 @@ The dataset contain several data files. We provide descriptions for each file be
 | `mob_vz_mp.txt` | MPTCP iPerf download trace using Mobility and Verizon |
 | `mob_vz_sp_mob.txt` | TCP iPerf download trace using Mobility |
 | `mob_vz_sp_vz.txt` | TCP iPerf download trace using Verizon |
-| `parse_iperf.py` | Python script to parse data and generate plots.|
+| `parse_iperf.py` | Python script to parse data and generate plots. |
 
 ## Generating plots
 
@@ -36,4 +36,4 @@ After cloning the repository, navigate to the `Figure11` folder and simply run t
 `python parse_iperf.py --fig a`
 `python parse_iperf.py --fig b`
 
-If everything succeeds, figures of network performance coverage should be created with the formats '.pdf'.
+If everything succeeds, the figure of throughput progression over time should be created with the formats '.pdf'.
