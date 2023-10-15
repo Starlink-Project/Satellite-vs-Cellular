@@ -22,8 +22,8 @@ We perform extensive drive tests across major cities and interstate freeways in 
 |:---:|:---:|:---:|
 | Figure 1 | [Downlink-Thrpt](1-Downlink-Thrpt) | Examples of download throughput of different networks over time. |
 | Figure 3 | [Thrpt-Comp](3-Thrpt-Comp) | Throughput performance comparison from different aspects. |
-| Figure 4 | [UDP-Ping-Latency](4-UDP-Ping-Latency) | CDF result of UDP Ping latency of Starlink and cellular networks |
-| Figure 5 | [TCP-Packet-Loss](5-TCP-Packet-Loss) | TCP packet loss ratio comparison between Starlink and cellular networks |
+| Figure 4 | [UDP-Ping-Latency](4-UDP-Ping-Latency) | UDP Ping latency results of Starlink and cellular networks |
+| Figure 5 | [TCP-Packet-Loss](5-TCP-Packet-Loss) | TCP packet loss rate results of Starlink and cellular networks |
 | Figure 6 | [Driving-Speed](6-Driving-Speed) | Relationship of throughput and moving speed for Starlink and cellular networks. |
 | Figure 7 | [TCP-Parallel](7-TCP-Parallel) | Impact of TCP parallelism on TCP throughput for Starlink and cellular networks. |
 | Figure 8 | [Area-Type](8-Area-Type) | Impact of area types on network throughput of Starlink and cellular networks |
