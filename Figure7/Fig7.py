@@ -51,6 +51,7 @@ def ImproveBarParallel(foldername, direction):
     ax.set_xlabel('Improvement Percentage (%)', fontsize=18)
 
     plt.grid(True)
+    ax.set_axisbelow(True)
     plt.tight_layout()
     figname = os.path.join(os.getcwd(), 'parallel.pdf')
     plt.savefig(figname)
