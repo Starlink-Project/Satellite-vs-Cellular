@@ -1,5 +1,7 @@
 import os
 import pandas as pd
+import matplotlib
+matplotlib.rcParams['pdf.fonttype'] = 42
 import matplotlib.pyplot as plt
 
 def coveragePrec(foldername, direction):

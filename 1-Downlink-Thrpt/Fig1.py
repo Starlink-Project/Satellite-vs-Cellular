@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 import numpy as np
+import matplotlib
+matplotlib.rcParams['pdf.fonttype'] = 42
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, Normalize
 from matplotlib.colorbar import ColorbarBase
@@ -37,7 +39,7 @@ def plotTimeSeq3(time1, time2):
 
     plt.xlabel("Time (s)", fontsize=20)
     cmap_list = [plt.cm.Reds, plt.cm.Oranges, plt.cm.Greens, plt.cm.Blues]
-    y_labels = ['ATT\n(AT&T)', 'TM\n(T-mobile)', 'VZ\n(Verzion)', 'MOB\n(Mobility)']
+    y_labels = ['ATT\n(AT&T)', 'TM\n(T-Mobile)', 'VZ\n(Verzion)', 'MOB\n(Mobility)']
 
     max_thrpt = max(max(v) for v in thrpt.values())
     min_thrpt = min(min(v) for v in thrpt.values())

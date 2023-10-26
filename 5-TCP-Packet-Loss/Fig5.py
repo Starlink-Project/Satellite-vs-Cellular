@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.rcParams['pdf.fonttype'] = 42
 import matplotlib.pyplot as plt
 import os
 

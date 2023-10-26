@@ -1,6 +1,8 @@
 import numpy as np
 import os
 import argparse
+import matplotlib
+matplotlib.rcParams['pdf.fonttype'] = 42
 from matplotlib import pyplot as plt
 
 DATA_PATHS = {
