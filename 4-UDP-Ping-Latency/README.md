@@ -30,7 +30,7 @@ Here are the software/package requirements. The version number in the bracket in
 - Simply run the following command.
 
 ```
-unzip '*.zip'
+unzip 'UDPPingAll/*.zip' -d UDPPingAll/
 python Fig4.py
 ```
 
